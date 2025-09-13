@@ -21,7 +21,7 @@
     <button class="tab" role="tab" aria-selected="false" data-target="teams">チーム</button>
   </div>
 
-  <input id="q" class="input" type="search" placeholder="選手名・チーム名で検索（例：田中、Blue）" aria-label="フリーワード検索">
+  <!-- <input id="q" class="input" type="search" placeholder="選手名・チーム名で検索（例：田中、Blue）" aria-label="フリーワード検索"> -->
 
   <div class="filters" aria-hidden="false">
     <label style="margin:0">
@@ -46,10 +46,13 @@
         <option value="DB">DB</option> -->
       </select>
     </label>
-
     <label style="margin:0">
-      <div class="muted">背番号</div>
-      <input id="numMax" type="tel" min="0" placeholder="0-99" class="input small" style="width:50px" aria-label="背番号上限">
+      <div class="muted">選手名・チーム名</div>
+        <input id="q" class="input" type="search" placeholder="選手名・チーム名で検索（例：田中、Blue）" aria-label="フリーワード検索">
+    </label>
+    <label style="margin:0">
+      <div class="muted">番号</div>
+      <input id="numMax" type="tel" min="0" placeholder="0-99" class="input small" style="width:50px" aria-label="番号上限">
     </label>
 
     <button id="resetFilters" class="btn small" title="フィルタリセット">リセット</button>
@@ -68,7 +71,7 @@
       <select id="sortBy" class="input" aria-label="並べ替え">
         <option value="relevance">関連順</option>
         <option value="name">名前（昇順）</option>
-        <option value="number">背番号（昇順）</option>
+        <option value="number">番号（昇順）</option>
       </select>
     </div>
 
@@ -88,11 +91,13 @@
   <section class="results" aria-live="polite">
     <div class="list-controls">
       <div class="muted" id="activeFilters">フィルタ：なし</div>
-      <div>
+      <!-- <div>
+        <button id="toggleView" class="btn small">グリッド切替</button>
+      </div> -->
+    </div>
+     <div>
         <button id="toggleView" class="btn small">グリッド切替</button>
       </div>
-    </div>
-
     <div id="resultsArea">
       <!-- 動的に挿入 -->
     </div>

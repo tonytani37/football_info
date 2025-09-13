@@ -1,4 +1,4 @@
 [
-  { "id":"t1", "name":"Tokyo Blue", "division":"East", "city":"Tokyo", "founded":1998, "stadium":"Tokyo Dome", "coach":"S. Watanabe", "members":52 },
-  { "id":"t2", "name":"Osaka Red", "division":"West", "city":"Osaka", "founded":2002, "stadium":"Osaka Field", "coach":"K. Sato", "members":48 }
+  { "id":"t1", "name":"広島大学ラクーンズ", "division":"East", "city":"Tokyo", "founded":1998, "stadium":"Tokyo Dome", "coach":"S. Watanabe", "members":52 },
+  { "id":"t2", "name":"O山口大学ギャンブラーズ", "division":"West", "city":"Osaka", "founded":2002, "stadium":"Osaka Field", "coach":"K. Sato", "members":48 }
 ]

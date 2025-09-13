@@ -172,7 +172,7 @@ function updateActiveFilters(){
   if (state.q) parts.push(`検索："${state.q}"`);
   if (state.division) parts.push(`Division: ${state.division}`);
   if (state.position) parts.push(`Position: ${state.position}`);
-  if (state.numMax) parts.push(`背番号 ≤ ${state.numMax}`);
+  if (state.numMax) parts.push(`番号 = ${state.numMax}`);
   activeFiltersEl.textContent = parts.length ? `フィルタ： ${parts.join(' / ')}` : 'フィルタ：なし';
 }
 
@@ -184,7 +184,7 @@ function renderPlayers(players){
     // テーブル表示
     const table = document.createElement('table');
     const thead = document.createElement('thead');
-    thead.innerHTML = `<tr><th>背番号</th><th>選手名</th><th>チーム</th><th>ポジション</th><th></th></tr>`;
+    thead.innerHTML = `<tr><th>番号</th><th>選手名</th><th>チーム</th><th>ポジション</th><th></th></tr>`;
     table.appendChild(thead);
     const tbody = document.createElement('tbody');
     players.forEach(p=>{
