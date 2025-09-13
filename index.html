@@ -190,8 +190,8 @@ let samplePlayers = [];
 async function loadData() {
   try {
     const [playersRes, teamsRes] = await Promise.all([
-      fetch("players.json"),
-      fetch("teams.json")
+      fetch("statics/json/players.json"),
+      fetch("statics/json/teams.json")
     ]);
     samplePlayers = await playersRes.json();
     sampleTeams = await teamsRes.json();
