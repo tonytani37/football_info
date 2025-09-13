@@ -22,7 +22,7 @@
   .tab[aria-selected="true"]{background:linear-gradient(90deg,var(--accent),#4fd1ff); color:#021122; font-weight:600}
   .input{
     background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04);
-    padding:10px 12px; border-radius:10px; color:inherit; min-width:220px;
+    padding:10px 12px; border-radius:10px; color:inherit; min-width:220px; font-size: 16px;
   }
   .filters{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
   select.input, input[type=number].input{appearance:none}
