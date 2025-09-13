@@ -27,15 +27,10 @@
     padding:8px 12px; border-radius:8px; background:var(--glass); cursor:pointer; color:var(--muted);
   }
   .tab[aria-selected="true"]{background:linear-gradient(90deg,var(--accent),#4fd1ff); color:#021122; font-weight:600}
- .input {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.04);
-  padding: 10px 12px;
-  border-radius: 10px;
-  color: inherit;
-  min-width: 220px;
-  font-size: 16px;   /* ← 追加 */
-    }
+  .input{
+    background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04);
+    padding:10px 12px; border-radius:10px; color:inherit; min-width:220px;
+  }
   .filters{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
   select.input, input[type=number].input{appearance:none}
   .main{display:grid; grid-template-columns: 320px 1fr; gap:16px; margin-top:18px}
@@ -112,7 +107,7 @@
 
     <label style="margin:0">
       <div class="muted">背番号</div>
-      <input id="numMax" type="tel" min="0" placeholder="0-99" class="input small" style="width:84px" aria-label="背番号上限">
+      <input id="numMax" type="tel" min="0" placeholder="0-99" class="input small" style="width:50px" aria-label="背番号上限">
     </label>
 
     <button id="resetFilters" class="btn small" title="フィルタリセット">リセット</button>
