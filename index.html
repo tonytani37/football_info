@@ -168,6 +168,7 @@
 /* -------------------------
    サンプルデータ（実運用時はAPIから取得）
    ------------------------- */
+/* 
 const sampleTeams = [
   { id: 't1', name: 'Tokyo Blue', division: 'East', city: 'Tokyo', founded: 1998, stadium:'Tokyo Dome', coach: 'S. Watanabe', members: 52 },
   { id: 't2', name: 'Osaka Red', division: 'West', city: 'Osaka', founded: 2002, stadium:'Osaka Field', coach: 'K. Sato', members:48 },
@@ -181,6 +182,26 @@ const samplePlayers = [
   { id:'p4', name:'鈴木 三郎', team:'Nagoya Knights', position:'LB', number:52, height:188, weight:100, born:'1990-03-03' },
   { id:'p5', name:'小林 四郎', team:'Osaka Red', position:'QB', number:7, height:186, weight:90, born:'1993-05-15' },
 ];
+*/
+let sampleTeams = [];
+let samplePlayers = [];
+
+// JSONファイルを読み込み
+async function loadData() {
+  try {
+    const [playersRes, teamsRes] = await Promise.all([
+      fetch("players.json"),
+      fetch("teams.json")
+    ]);
+    samplePlayers = await playersRes.json();
+    sampleTeams = await teamsRes.json();
+    render(); // データ取得後に初回描画
+  } catch (err) {
+    console.error("JSON load error:", err);
+  }
+}
+
+
 
 /* -------------------------
    基本状態
@@ -507,7 +528,8 @@ function escHandler(e){ if (e.key === 'Escape') closeModal(); }
 function escapeHtml(s){ if (!s && s !== 0) return ''; return String(s).replace(/[&<>"']/g, (m)=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
 
 /* 初期レンダリング */
-render();
+// render();
+loadData();   // JSON読み込み後にrender()
 </script>
 </body>
 </html>

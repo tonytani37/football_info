@@ -1,0 +1,5 @@
+[
+  { "id":"p1", "name":"山本　一郎", "team":"Tokyo Blue", "position":"QB", "number":12, "height":185, "weight":92, "born":"1992-04-12" },
+  { "id":"p2", "name":"佐藤 次郎", "team":"Tokyo Blue", "position":"RB", "number":24, "height":178, "weight":88, "born":"1996-07-01" },
+  { "id":"p3", "name":"山田 太郎", "team":"Osaka Red", "position":"WR", "number":88, "height":182, "weight":84, "born":"1994-11-20" }
+]
