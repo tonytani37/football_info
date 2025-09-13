@@ -184,12 +184,12 @@ function renderPlayers(players){
     // テーブル表示
     const table = document.createElement('table');
     const thead = document.createElement('thead');
-    thead.innerHTML = `<tr><th>番号</th><th>選手名</th><th>チーム</th><th>ポジション</th><th></th></tr>`;
+    thead.innerHTML = `<tr><th>番号</th><th>選手名</th><th>チーム</th><th>学年</th><th>ポジション</th><th></th></tr>`;
     table.appendChild(thead);
     const tbody = document.createElement('tbody');
     players.forEach(p=>{
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>#${p.number}</td><td>${escapeHtml(p.name)}</td><td>${escapeHtml(p.team)}</td><td>${p.position}</td><td><button class="btn small" data-id="${p.id}" data-type="player">詳細</button></td>`;
+      tr.innerHTML = `<td>#${p.number}</td><td>${escapeHtml(p.name)}</td><td>${escapeHtml(p.team)}</td><td>${p.grade}</td><td>${p.position}</td><td><button class="btn small" data-id="${p.id}" data-type="player">詳細</button></td>`;
       tbody.appendChild(tr);
     });
     table.appendChild(tbody);
@@ -204,7 +204,7 @@ function renderPlayers(players){
           <div class="team-badge">${escapeHtml(p.number)}</div>
           <div>
             <div style="font-weight:700">${escapeHtml(p.name)}</div>
-            <div class="meta">${escapeHtml(p.team)} ・ ${p.position}</div>
+            <div class="meta">${escapeHtml(p.team)}　${p.grade}年　${p.position}</div>
           </div>
         </div>
       `;
@@ -281,12 +281,13 @@ function openModalPlayer(id){
           <div style="min-width:180px">
             <div class="muted">身長 / 体重</div>
             <div style="font-weight:700">${p.height} cm / ${p.weight} kg</div>
-            <div class="muted" style="margin-top:8px">生年月日</div>
-            <div>${p.born}</div>
+
+            <div class="muted" style="margin-top:8px">出身校</div>
+            <div>${p.almaMater}</div>
           </div>
           <div style="flex:1">
-            <div class="muted">プロフィール</div>
-            <p style="margin-top:6px" class="muted">所属チームでの経歴や主な成績などをここに表示します（サンプルデータのため簡略）。</p>
+            <div class="muted" style="margin-top:8px">学年</div>
+            <div>${p.grade}</div>
             <div style="margin-top:8px"><button class="btn" id="openTeamFromPlayer">チーム詳細を開く</button></div>
           </div>
         </div>
