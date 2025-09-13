@@ -3,3 +3,4 @@
 - DBはmongoDB Atlasを利用する
 - DBアクセスはAPIに任せる
 - フロントはGithub pages、バックエンドはCloud Run
+- 選手やチームはそんなに頻繁に変わらないから、mongodbからはAPI経由で立ち上げ時にマスタ的に一括で読み込んでも問題がないはず。
