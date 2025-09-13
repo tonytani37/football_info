@@ -25,6 +25,7 @@ async function loadData() {
 let state = {
   mode: 'players', // players | teams
   q:'',
+  division:'',
   numMax:'',
   sortBy:'relevance',
   perPage:12,
@@ -36,6 +37,7 @@ let state = {
    DOM
    ------------------------- */
 const qEl = document.getElementById('q');
+const divisionEl = document.getElementById('division');
 const numMaxEl = document.getElementById('numMax');
 const sortByEl = document.getElementById('sortBy');
 const perPageEl = document.getElementById('perPage');
@@ -60,7 +62,7 @@ tabs.forEach(t=>{
   });
 });
 
-[qEl, numMaxEl, sortByEl, perPageEl].forEach(el=>{
+[qEl, divisionEl, numMaxEl, sortByEl, perPageEl].forEach(el=>{
   el.addEventListener('input', (e)=> {
     state[e.target.id === 'q' ? 'q' : (e.target.id || e.target.name)] = e.target.value;
     if (e.target.id === 'perPage') state.perPage = parseInt(e.target.value) || 12;
@@ -69,8 +71,14 @@ tabs.forEach(t=>{
 });
 
 resetBtn.addEventListener('click', ()=> {
-  qEl.value = ''; numMaxEl.value='';
-  state.q=''; state.numMax=''; render();
+  qEl.value = ''; 
+  divisionEl.value='';
+  numMaxEl.value='';
+  state.q='';  
+  state.division='';
+  state.numMax=''; 
+  state.page = 1;
+  render();
 });
 
 toggleViewBtn.addEventListener('click', ()=> {
@@ -92,6 +100,7 @@ function filterAndSort(){
   const q = state.q.trim().toLowerCase();
   let items = state.mode === 'players' ? samplePlayers.slice() : sampleTeams.slice();
 
+  if (state.division) items = items.filter(it => (it.division || '').toLowerCase() === state.division.toLowerCase());
   // 番号完全一致フィルタ
   if (state.mode === 'players' && state.numMax !== '' && state.numMax != null) {
       const target = Number(state.numMax);
@@ -104,7 +113,9 @@ function filterAndSort(){
   if (q) {
     const tokens = q.split(/\s+/);
     items = items.filter(it => {
-      const hay = `${it.name || ''} ${it.team || ''} ${it.name_en || ''} ${it.city || ''} ${it.name}`.toLowerCase();
+    //   const hay = `${it.name || ''} ${it.team || ''} ${it.name_en || ''} ${it.city || ''} ${it.name}`.toLowerCase();
+    // 修正後
+    const hay = `${it.name || ''} ${it.team || ''} ${it.name_en || ''} ${it.city || ''} ${it.name} ${it.division || ''}`.toLowerCase();
       return tokens.every(t => hay.includes(t));
     });
   }
@@ -146,6 +157,7 @@ function render(){
 function updateActiveFilters(){
   const parts = [];
   if (state.q) parts.push(`検索："${state.q}"`);
+  if (state.division) parts.push(`Division: ${state.division}`);
   if (state.numMax) parts.push(`番号 = ${state.numMax}`);
   activeFiltersEl.textContent = parts.length ? `フィルタ： ${parts.join(' / ')}` : 'フィルタ：なし';
 }
