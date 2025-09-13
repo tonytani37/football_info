@@ -303,7 +303,7 @@ function openModalTeam(id){
   const lst = modalRoot.querySelector('#teamPlayersList');
   samplePlayers.filter(p=>p.team===t.name).forEach(p=>{
     const li = document.createElement('li');
-    li.innerHTML = `<button class="btn small" data-id="${p.id}" data-type="player-inline">${escapeHtml(p.name)} (#${p.number})</button>`;
+    li.innerHTML = `<button class="btn-player" data-id="${p.id}" data-type="player-inline">#${p.number} ${escapeHtml(p.name)} ${p.position} ${p.grade}年 </button>`;
     lst.appendChild(li);
   });
 
