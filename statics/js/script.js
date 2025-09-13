@@ -275,7 +275,7 @@ function openModalPlayer(id){
       <div class="modal">
         <button class="close" id="modalClose">閉じる</button>
         <h2>${escapeHtml(p.name)} <span class="muted">#${p.number}</span></h2>
-        <div class="muted">チーム: ${escapeHtml(p.team)} ・ ポジション: ${p.position}</div>
+        <div class="muted">チーム: ${escapeHtml(p.team)} ・ ポジション: ${p.position} ・ ${p.grade} 年</div>
         <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:12px 0">
         <div style="display:flex;gap:18px;flex-wrap:wrap">
           <div style="min-width:180px">
@@ -285,12 +285,7 @@ function openModalPlayer(id){
             <div class="muted" style="margin-top:8px">出身校</div>
             <div>${p.almaMater}</div>
           </div>
-          <div style="flex:1">
-            <div class="muted" style="margin-top:8px">学年</div>
-            <div>${p.grade}</div>
-
-          </div>
-                      <div style="margin-top:8px"><button class="btn" id="openTeamFromPlayer">チーム詳細を開く</button></div>
+          <div style="margin-top:8px"><button class="btn" id="openTeamFromPlayer">チーム詳細を開く</button></div>
         </div>
       </div>
     </div>
