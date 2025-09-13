@@ -1,5 +1,5 @@
 [
-  { "id":"p1", "name":"山本　一郎", "team":"広島大学ラクーンズ", "position":"QB/DB", "number":12, "grade":2,"height":185, "weight":92, "almaMater":"広島新庄" },
-  { "id":"p2", "name":"佐藤 次郎", "team":"広島大学ラクーンズ", "position":"RB", "number":24, "grade":3,"height":178, "weight":88, "almaMater":"恵那" },
-  { "id":"p3", "name":"山田 太郎", "team":"山口大学ギャンブラーズ", "position":"WR", "number":88, "grade":4,"height":182, "weight":84, "almaMater":"明星" }
+  { "id":"p1", "name":"山本　一郎", "team":"広島大学", "position":"QB/DB", "number":12, "grade":2,"height":185, "weight":92, "almaMater":"広島新庄" },
+  { "id":"p2", "name":"佐藤 次郎", "team":"広島大学", "position":"RB", "number":24, "grade":3,"height":178, "weight":88, "almaMater":"恵那" },
+  { "id":"p3", "name":"山田 太郎", "team":"山口大学", "position":"WR", "number":88, "grade":4,"height":182, "weight":84, "almaMater":"明星" }
 ]

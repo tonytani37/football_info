@@ -228,10 +228,10 @@ function renderTeams(teams){
   wrapper.className = state.viewGrid ? 'result-grid' : '';
   if (!state.viewGrid){
     const table = document.createElement('table');
-    table.innerHTML = `<thead><tr><th>チーム</th><th>都市</th><th>Division</th><th>メンバー</th><th></th></tr></thead><tbody></tbody>`;
+    table.innerHTML = `<thead><tr><th>チーム</th><th>ニックネーム</th><th>所在地</th><th>創設年</th><th></th></tr></thead><tbody></tbody>`;
     teams.forEach(t=>{
       const row = document.createElement('tr');
-      row.innerHTML = `<td>${escapeHtml(t.name)}</td><td>${escapeHtml(t.city)}</td><td>${t.division}</td><td>${t.members}</td><td><button class="btn small" data-id="${t.id}" data-type="team">詳細</button></td>`;
+      row.innerHTML = `<td>${escapeHtml(t.name)}</td><td>${t.nickname}</td><td>${escapeHtml(t.city)}</td><td>${t.founded}</td><td><button class="btn small" data-id="${t.id}" data-type="team">詳細</button></td>`;
       table.querySelector('tbody').appendChild(row);
     });
     wrapper.appendChild(table);
@@ -245,8 +245,8 @@ function renderTeams(teams){
           <div class="team-badge">${escapeHtml(t.name.split(' ').map(s=>s[0]).join('').slice(0,2))}</div>
           <div>
             <div style="font-weight:700">${escapeHtml(t.name)}</div>
-            <div class="meta">${escapeHtml(t.city)} ・ ${t.division}</div>
-            <div class="muted">代表: ${escapeHtml(t.coach)} ・ 創設 ${t.founded}</div>
+            <div class="meta">${escapeHtml(t.nickname)}</div>
+            <div class="muted">創設 ${t.founded}</div>
           </div>
         </div>
       `;
@@ -288,8 +288,9 @@ function openModalPlayer(id){
           <div style="flex:1">
             <div class="muted" style="margin-top:8px">学年</div>
             <div>${p.grade}</div>
-            <div style="margin-top:8px"><button class="btn" id="openTeamFromPlayer">チーム詳細を開く</button></div>
+
           </div>
+                      <div style="margin-top:8px"><button class="btn" id="openTeamFromPlayer">チーム詳細を開く</button></div>
         </div>
       </div>
     </div>
@@ -318,14 +319,12 @@ function openModalTeam(id){
       <div class="modal">
         <button class="close" id="modalClose">閉じる</button>
         <h2>${escapeHtml(t.name)} <span class="muted">(${escapeHtml(t.city)})</span></h2>
-        <div class="muted">ディビジョン: ${t.division} ・ 代表: ${escapeHtml(t.coach)}</div>
-        <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:12px 0">
+        <div class="muted">ニックネーム: ${escapeHtml(t.nickname)} ・創設年:${escapeHtml(t.founded)}</div>
+        <div class="muted">ヘッドコーチ: ${escapeHtml(t.coach)}</div>
+        <hr style="border:none;height:1px;background:rgba(5, 4, 4, 0.03);margin:12px 0">
         <div>
-          <div class="muted">スタジアム</div>
-          <div style="font-weight:700">${escapeHtml(t.stadium)}</div>
-
-          <div style="margin-top:10px" class="muted">主な選手</div>
-          <ul id="teamPlayersList" class="muted" style="margin-top:6px"></ul>
+          <div style="margin-top:10px" class="muted">登録選手</div>
+          <ul id="teamPlayersList" class="muted" style="margin-top:3px"></ul>
         </div>
       </div>
     </div>

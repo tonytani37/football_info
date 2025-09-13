@@ -76,7 +76,13 @@
   th,td{padding:8px 10px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.03)}
   th{font-size:13px;color:var(--muted)}
   .btn{
-    padding:8px 10px;border-radius:8px;background:var(--accent);color:#021122;border:none;cursor:pointer;font-weight:600;
+    padding:8px 10px;
+    border-radius:2px;
+    background:var(--accent);
+    color:#021122;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
   }
   .small{font-size:13px;padding:6px 8px}
   /* modal */
