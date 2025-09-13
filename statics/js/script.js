@@ -204,7 +204,8 @@ function renderPlayers(players){
           <div class="team-badge">${escapeHtml(p.number)}</div>
           <div>
             <div style="font-weight:700">${escapeHtml(p.name)}</div>
-            <div class="meta">${escapeHtml(p.team)}　${p.grade}年　${p.position}</div>
+            <div class="meta">${escapeHtml(p.team)} ${p.position}</div>
+            <div class="meta">${p.grade}年</div>
           </div>
         </div>
       `;
