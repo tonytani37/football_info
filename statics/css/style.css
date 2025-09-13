@@ -37,8 +37,8 @@
     padding:10px 12px; 
     border-radius:10px; 
     color:inherit; 
-    min-width: 120px;
-    font-size: 16px;
+    min-width: 200px;
+    font-size: 1em;
   }
 
   .filters{
