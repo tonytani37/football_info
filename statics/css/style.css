@@ -9,26 +9,59 @@
     padding:24px;
   }
   header{
-    display:flex; gap:16px; align-items:center; margin-bottom:18px;
+    display:flex; 
+    gap:16px; 
+    align-items:center; 
+    margin-bottom:18px;
   }
   h1{font-size:20px; margin:0}
   .search-bar{
-    display:flex; gap:12px; align-items:center; margin-top:8px; flex-wrap:wrap;
+    display:flex; 
+    gap:12px; 
+    align-items:center; 
+    margin-top:8px; 
+    flex-wrap:wrap;
   }
   .tabs{display:flex; gap:8px}
   .tab{
-    padding:8px 12px; border-radius:8px; background:var(--glass); cursor:pointer; color:var(--muted);
+    padding:8px 12px; 
+    border-radius:8px; 
+    background:var(--glass); 
+    cursor:pointer; 
+    color:var(--muted);
   }
   .tab[aria-selected="true"]{background:linear-gradient(90deg,var(--accent),#4fd1ff); color:#021122; font-weight:600}
   .input{
-    background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04);
-    padding:10px 12px; border-radius:10px; color:inherit; min-width:220px; font-size: 16px;
+    background:rgba(255,255,255,0.03); 
+    border:1px solid rgba(255,255,255,0.04);
+    padding:10px 12px; 
+    border-radius:10px; 
+    color:inherit; 
+    min-width: 120px;
+    font-size: 16px;
   }
-  .filters{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+
+  .filters{
+    display:flex; 
+    gap:8px; 
+    align-items:center; 
+    flex-wrap:wrap
+}
   select.input, input[type=number].input{appearance:none}
-  .main{display:grid; grid-template-columns: 320px 1fr; gap:16px; margin-top:18px}
+  .main{
+    display:grid; 
+    grid-template-columns: 
+    320px 1fr; 
+    gap:16px; 
+    margin-top:18px;
+}
   @media (max-width:900px){ .main{grid-template-columns:1fr} .sidebar{order:2} .results{order:1} }
-  .sidebar{background:var(--card); padding:12px; border-radius:12px; box-shadow: 0 4px 20px rgba(2,6,23,0.6)}
+  .sidebar{
+    background:var(--card); 
+    padding:12px; 
+    border-radius:12px; 
+    box-shadow: 0 4px 20px rgba(2,6,23,0.6)
+}
   .results{min-height:320px}
   .list-controls{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px}
   .result-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px}
