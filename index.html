@@ -9,8 +9,9 @@
 <body>
 <header>
   <div>
-    <h3>2025年中四国学生リーグ</h3>
-    <div class="muted">チームと選手を素早く検索・絞り込み</div>
+    <!-- <h3>選手検索</h3> -->
+    <img src="statics/img/cscaa_jp.png" alt="logo" height="80" style="vertical-align:middle; margin-right:12px">
+    <!-- <div class="muted">チームと選手を素早く検索・絞り込み</div> -->
   </div>
   <div style="margin-left:auto" class="kbd">⌘/Ctrl + K で検索フォーカス</div>
 </header>
@@ -20,7 +21,8 @@
     <button class="tab" role="tab" aria-selected="true" data-target="players">選手</button>
     <button class="tab" role="tab" aria-selected="false" data-target="teams">チーム</button>
   </div>
-  
+</div>
+<div class="search-bar" role="search" aria-label="検索バー">
   <!-- <div class="filters" aria-hidden="false">
     <label style="margin:0">
       <div class="muted">ディビジョン</div>
@@ -45,15 +47,17 @@
       </select>
     </label> -->
     <label style="margin:0">
-      <div class="muted">選手名・チーム名</div>
+      <!-- <div class="muted">選手名・チーム名</div> -->
         <input id="q" class="input" type="search" placeholder="選手名・チーム名で検索" aria-label="フリーワード検索">
     </label>
     <label style="margin:0">
-      <div class="muted">番号</div>
-      <input id="numMax" type="tel" min="0" placeholder="0-99" class="input small" style="width:50px" aria-label="番号上限">
+      <!-- <div class="muted">番号</div> -->
+      <input id="numMax" type="tel" min="0" placeholder="番号で検索" class="input small" style="width:50px" aria-label="番号上限">
     </label>
-
+    <label style="margin:0">
+      <!-- <div class="muted">   </div> -->
     <button id="resetFilters" class="btn small" title="フィルタリセット">リセット</button>
+    </label>
   </div>
 </div>
 
