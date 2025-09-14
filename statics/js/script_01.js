@@ -100,6 +100,11 @@ function filterAndSort(){
   const q = state.q.trim().toLowerCase();
   let items = state.mode === 'players' ? samplePlayers.slice() : sampleTeams.slice();
 
+  // プレイヤー表示モードで、検索条件が何もない場合は空の配列を返す
+  if (state.mode === 'players' && !q && !state.division && !state.numMax) {
+      return [];
+  }
+
   if (state.division) items = items.filter(it => (it.division || '').toLowerCase() === state.division.toLowerCase());
   // 番号完全一致フィルタ
   if (state.mode === 'players' && state.numMax !== '' && state.numMax != null) {
