@@ -266,7 +266,7 @@ function openModalPlayer(id){
     <div class="modal-backdrop" role="dialog" aria-modal="true" aria-label="選手詳細">
       <div class="modal">
         <button class="close" id="modalClose">閉じる</button>
-        <h2>${escapeHtml(p.name)} <span class="muted">#${p.number}</span></h2>
+        <h2>${escapeHtml(p.name)} #${p.number} <span class="muted">${p.captain}</span></h2>
         <div class="muted">チーム: ${escapeHtml(p.team)} ・ ポジション: ${p.position} ・ ${p.grade} 年</div>
         <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:12px 0">
         <div style="display:flex;gap:18px;flex-wrap:wrap">
@@ -274,8 +274,8 @@ function openModalPlayer(id){
             <div class="muted">身長 / 体重</div>
             <div style="font-weight:700">${p.height} cm / ${p.weight} kg</div>
 
-            <div class="muted" style="margin-top:8px">出身校</div>
-            <div>${p.almaMater}</div>
+            <div class="muted" style="margin-top:8px">出身校 / 高校時部活</div>
+            <div>${p.almaMater} / ${p.highSchoolClubActivities}</div>
           </div>
           <div style="margin-top:8px"><button class="btn" id="openTeamFromPlayer">チーム詳細を開く</button></div>
         </div>
@@ -301,27 +301,24 @@ function openModalPlayer(id){
 function openModalTeam(id){
   const t = sampleTeams.find(x=>x.id===id);
   if (!t) return;
-  modalRoot.innerHTML = `
-    <div class="modal-backdrop" role="dialog" aria-modal="true" aria-label="チーム詳細">
-      <div class="modal">
-        <button class="close" id="modalClose">閉じる</button>
-        <h2>${escapeHtml(t.name)} <span class="muted">(${escapeHtml(t.city)})</span></h2>
-        <div class="muted">ニックネーム: ${escapeHtml(t.nickname)} ・創設年:${escapeHtml(t.founded)}</div>
-        <div class="muted">ヘッドコーチ: ${escapeHtml(t.coach)}</div>
-        <hr style="border:none;height:1px;background:rgba(5, 4, 4, 0.03);margin:12px 0">
-        <div>
-          <div style="margin-top:10px" class="muted">登録選手</div>
-          <ul id="teamPlayersList" class="muted" style="margin-top:3px"></ul>
+    modalRoot.innerHTML = `
+      <div class="modal-backdrop" role="dialog" aria-modal="true" aria-label="チーム詳細">
+        <div class="modal">
+          <button class="close" id="modalClose">閉じる</button>
+          <h2>${escapeHtml(t.name)} <span class="muted">(${escapeHtml(t.city)})</span></h2>
+          <div class="muted">ニックネーム: ${escapeHtml(t.nickname)} </div>
+          <div class="muted">創立年度:${escapeHtml(t.founded)}年</div>
+          <div class="muted">ヘッドコーチ: ${escapeHtml(t.coach)}</div>
+          <div class="muted">チームカラー: ${escapeHtml(t.color)}</div>
+          <hr style="border:none;height:1px;background:rgba(5, 4, 4, 0.03);margin:12px 0"></hr>
         </div>
       </div>
-    </div>
-  `;
+    `;
   // list players
   const lst = modalRoot.querySelector('#teamPlayersList');
   samplePlayers.filter(p=>p.team===t.name).forEach(p=>{
     const li = document.createElement('li');
     li.innerHTML = `<button class="btn-player" data-id="${p.id}" data-type="player-inline">#${p.number} ${escapeHtml(p.name)} ${p.position} ${p.grade}年 </button>`;
-    lst.appendChild(li);
   });
 
   modalRoot.setAttribute('aria-hidden','false');
