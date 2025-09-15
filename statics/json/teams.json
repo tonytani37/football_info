@@ -1,8 +1,8 @@
 [
-  { "id":"t1", "name":"広島大学",  "division":"A","city":"広島県東広島市", "founded":1977, "nickname":"ラクーンズ", "coach":"萩原 裕基"},
-  { "id":"t4", "name":"高知大学",  "division":"A","city":"高知県高知市", "founded":1977, "nickname":"マリンコーズ", "coach":"鈴木 次郎"},
-  { "id":"t5", "name":"愛媛大学",  "division":"A","city":"愛媛県松山市", "founded":1976, "nickname":"ボンバーズ", "coach":"高橋 三郎"},
-  { "id":"t2", "name":"山口大学",  "division":"B","city":"山口県山口市", "founded":1980, "nickname":"ギャンブラーズ", "coach":"阿部 亮"},
-  { "id":"t3", "name":"島根大学",  "division":"B","city":"島根県松江市", "founded":1982, "nickname":"ウォリアーズ", "coach":"田中 一郎"},
-  { "id":"t6", "name":"山口東京理科大学", "division":"B","city":"山口県山陽小野田市", "founded":2016, "nickname":"ボールパイソンズ", "coach":"山田 四郎"}
+  { "id":"t1", "name":"広島大学",  "division":"A","city":"広島県東広島市", "founded":1977, "nickname":"ラクーンズ", "coach":"猪 凌太郎","color":"ブラック/ホワイト"},
+  { "id":"t4", "name":"高知大学",  "division":"A","city":"高知県高知市", "founded":1977, "nickname":"マリンコーズ", "coach":"福永　剛","color":"グリーン/ホワイト"},
+  { "id":"t5", "name":"愛媛大学",  "division":"A","city":"愛媛県松山市", "founded":1976, "nickname":"ボンバーズ", "coach":"三瀬　雄嗣","color":"パープル/ネイビー/ゴールド"},
+  { "id":"t2", "name":"山口大学",  "division":"B","city":"山口県山口市", "founded":1980, "nickname":"ギャンブラーズ", "coach":"阿部 亮","color":"ブルー/ホワイト"},
+  { "id":"t3", "name":"島根大学",  "division":"B","city":"島根県松江市", "founded":1982, "nickname":"ウォリアーズ", "coach":"堀江　潤一","color":"レッド/ホワイト"},
+  { "id":"t6", "name":"山口東京理科大学", "division":"B","city":"山口県山陽小野田市", "founded":2016, "nickname":"ボールパイソンズ", "coach":"福島　雅弘","color":"オレンジ/ネイビー"}
 ]
