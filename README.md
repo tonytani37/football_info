@@ -32,7 +32,7 @@
 | `division`                 | string | 所属ディビジョン     | `"A"`      |
 | `team`                     | string | 所属チーム名       | `"広島大学"`   |
 | `number`                   | string | 背番号          | `"0"`      |
-| `position`                 | string | ポジション（複数可）   | `"WR/LB"`  |
+| `position`                 | string | ポジション   | `"WR/LB"`  |
 | `name`                     | string | 氏名           | `"大島 竣太"`  |
 | `grade`                    | string | 学年           | `"2"`      |
 | `height`                   | string | 身長（cm）       | `"170"`    |
