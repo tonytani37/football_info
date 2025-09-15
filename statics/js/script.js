@@ -1,21 +1,6 @@
 /* -------------------------
    サンプルデータ（実運用時はAPIから取得）
    ------------------------- */
-/* 
-const sampleTeams = [
-  { id: 't1', name: 'Tokyo Blue', division: 'East', city: 'Tokyo', founded: 1998, stadium:'Tokyo Dome', coach: 'S. Watanabe', members: 52 },
-  { id: 't2', name: 'Osaka Red', division: 'West', city: 'Osaka', founded: 2002, stadium:'Osaka Field', coach: 'K. Sato', members:48 },
-  { id: 't3', name: 'Nagoya Knights', division: 'Central', city:'Nagoya', founded:1995, stadium:'Nagoya Dome', coach:'M. Ito', members:51 },
-];
-
-const samplePlayers = [
-  { id:'p1', name:'田中 一郎', team:'Tokyo Blue', position:'QB', number:12, height:185, weight:92, born:'1992-04-12' },
-  { id:'p2', name:'佐藤 次郎', team:'Tokyo Blue', position:'RB', number:24, height:178, weight:88, born:'1996-07-01' },
-  { id:'p3', name:'山田 太郎', team:'Osaka Red', position:'WR', number:88, height:182, weight:84, born:'1994-11-20' },
-  { id:'p4', name:'鈴木 三郎', team:'Nagoya Knights', position:'LB', number:52, height:188, weight:100, born:'1990-03-03' },
-  { id:'p5', name:'小林 四郎', team:'Osaka Red', position:'QB', number:7, height:186, weight:90, born:'1993-05-15' },
-];
-*/
 let sampleTeams = [];
 let samplePlayers = [];
 
@@ -34,8 +19,6 @@ async function loadData() {
   }
 }
 
-
-
 /* -------------------------
    基本状態
    ------------------------- */
@@ -43,7 +26,6 @@ let state = {
   mode: 'players', // players | teams
   q:'',
   division:'',
-  position:'',
   numMax:'',
   sortBy:'relevance',
   perPage:12,
@@ -56,7 +38,6 @@ let state = {
    ------------------------- */
 const qEl = document.getElementById('q');
 const divisionEl = document.getElementById('division');
-const positionEl = document.getElementById('position');
 const numMaxEl = document.getElementById('numMax');
 const sortByEl = document.getElementById('sortBy');
 const perPageEl = document.getElementById('perPage');
@@ -81,7 +62,7 @@ tabs.forEach(t=>{
   });
 });
 
-[qEl, divisionEl, positionEl, numMaxEl, sortByEl, perPageEl].forEach(el=>{
+[qEl, divisionEl, numMaxEl, sortByEl, perPageEl].forEach(el=>{
   el.addEventListener('input', (e)=> {
     state[e.target.id === 'q' ? 'q' : (e.target.id || e.target.name)] = e.target.value;
     if (e.target.id === 'perPage') state.perPage = parseInt(e.target.value) || 12;
@@ -90,8 +71,14 @@ tabs.forEach(t=>{
 });
 
 resetBtn.addEventListener('click', ()=> {
-  qEl.value = ''; divisionEl.value=''; positionEl.value=''; numMaxEl.value='';
-  state.q=''; state.division=''; state.position=''; state.numMax=''; render();
+  qEl.value = ''; 
+  divisionEl.value='';
+  numMaxEl.value='';
+  state.q='';  
+  state.division='';
+  state.numMax=''; 
+  state.page = 1;
+  render();
 });
 
 toggleViewBtn.addEventListener('click', ()=> {
@@ -113,22 +100,27 @@ function filterAndSort(){
   const q = state.q.trim().toLowerCase();
   let items = state.mode === 'players' ? samplePlayers.slice() : sampleTeams.slice();
 
-  // フィルタ
+  // プレイヤー表示モードで、検索条件が何もない場合は空の配列を返す
+  if (state.mode === 'players' && !q && !state.division && !state.numMax) {
+      return [];
+  }
+
   if (state.division) items = items.filter(it => (it.division || '').toLowerCase() === state.division.toLowerCase());
-  if (state.position && state.mode === 'players') items = items.filter(it => (it.position || '').toLowerCase() === state.position.toLowerCase());
   // 番号完全一致フィルタ
-    if (state.mode === 'players' && state.numMax !== '' && state.numMax != null) {
-        const target = Number(state.numMax);
-        if (!isNaN(target)) {
-            items = items.filter(it => Number(it.number) === target);
-        }
-    }
+  if (state.mode === 'players' && state.numMax !== '' && state.numMax != null) {
+      const target = Number(state.numMax);
+      if (!isNaN(target)) {
+          items = items.filter(it => Number(it.number) === target);
+      }
+  }
 
   // クエリ検索（名前、チーム名）
   if (q) {
     const tokens = q.split(/\s+/);
     items = items.filter(it => {
-      const hay = `${it.name || ''} ${it.team || ''} ${it.name_en || ''} ${it.city || ''} ${it.name}`.toLowerCase();
+    //   const hay = `${it.name || ''} ${it.team || ''} ${it.name_en || ''} ${it.city || ''} ${it.name}`.toLowerCase();
+    // 修正後
+    const hay = `${it.name || ''} ${it.team || ''} ${it.name_en || ''} ${it.city || ''} ${it.name} ${it.division || ''}`.toLowerCase();
       return tokens.every(t => hay.includes(t));
     });
   }
@@ -171,7 +163,6 @@ function updateActiveFilters(){
   const parts = [];
   if (state.q) parts.push(`検索："${state.q}"`);
   if (state.division) parts.push(`Division: ${state.division}`);
-  if (state.position) parts.push(`Position: ${state.position}`);
   if (state.numMax) parts.push(`番号 = ${state.numMax}`);
   activeFiltersEl.textContent = parts.length ? `フィルタ： ${parts.join(' / ')}` : 'フィルタ：なし';
 }
@@ -329,7 +320,7 @@ function openModalTeam(id){
   const lst = modalRoot.querySelector('#teamPlayersList');
   samplePlayers.filter(p=>p.team===t.name).forEach(p=>{
     const li = document.createElement('li');
-    li.innerHTML = `<button class="btn small" data-id="${p.id}" data-type="player-inline">${escapeHtml(p.name)} (#${p.number})</button>`;
+    li.innerHTML = `<button class="btn-player" data-id="${p.id}" data-type="player-inline">#${p.number} ${escapeHtml(p.name)} ${p.position} ${p.grade}年 </button>`;
     lst.appendChild(li);
   });
 

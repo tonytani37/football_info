@@ -1,6 +1,5 @@
 ## アメフトチームの情報を検索できるサイトを立ち上げる
 
-- DBはmongoDB Atlasを利用する
-- DBアクセスはAPIに任せる
-- フロントはGithub pages、バックエンドはCloud Run
-- 選手やチームはそんなに頻繁に変わらないから、mongodbからはAPI経由で立ち上げ時にマスタ的に一括で読み込んでも問題がないはず。
+- DBはmongoDB Atlasを利用する（将来構想）
+- DBアクセスはAPIに任せる（データアクセス速度を考慮して現時点で対応未定）
+- フロントはGithub pages、バックエンドはCloud Run（同じく現在はGithubのみで稼働中）
