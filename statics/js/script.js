@@ -265,7 +265,7 @@ function renderTeams(teams){
       c.tabIndex = 0;
       // const teamColor = teamColors[t.name] || '#808080';
        // `--accent`変数を直接要素に設定
-      c.style.setProperty('--accent', teamColor);
+      // c.style.setProperty('--accent', teamColor);
       const teamMark = teamMarks[t.name] || `statics/img/cscaa_jp.png`;
       const playerImgSrc = `statics/img/teams/${teamMark}`;
       c.innerHTML = `
