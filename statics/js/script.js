@@ -44,6 +44,17 @@ const teamColors = {
   // チームと色を追加してください
 };
 
+/* チームカラーの定義 */
+const teamMarks = {
+  '広島大学': 'hiroshima.png', 
+  '高知大学': 'kouchi.png', 
+  '愛媛大学': 'ehime.png', 
+  '山口大学': 'yamaguchi.png', 
+  '島根大学': 'shimane.png', 
+  '山口東京理科大学': 'rikadai.png' 
+  // チームと色を追加してください
+};
+
 /* -------------------------
    DOM
    ------------------------- */
@@ -320,11 +331,20 @@ function openModalPlayer(id){
 function openModalTeam(id){
   const t = sampleTeams.find(x=>x.id===id);
   if (!t) return;
+    const teamMark = teamMarks[t.name] || `statics/img/cscaa_jp.png`;
+    const playerImgSrc = `statics/img/teams/${teamMark}`;
+    // const playerImgSrc = `statics/img/cscaa_jp.png`;
     modalRoot.innerHTML = `
       <div class="modal-backdrop" role="dialog" aria-modal="true" aria-label="チーム詳細">
         <div class="modal">
+          <div style="display:flex; align-items:flex-start; gap: 24px;">
+            <div style="display:flex; flex-direction:column; align-items:center;">
+                <img src=${playerImgSrc} style="width:110px; height:110px; object-fit:cover; border-radius:8px;">
+            </div>
+        <div>
           <button class="close" id="modalClose">閉じる</button>
-          <h2>${escapeHtml(t.name)} <span class="muted">(${escapeHtml(t.city)})</span></h2>
+          <h2>${escapeHtml(t.name)}</h2>
+          <span class="muted">(${escapeHtml(t.city)})</span>
           <div class="muted">ニックネーム: ${escapeHtml(t.nickname)} </div>
           <div class="muted">創立年度:${escapeHtml(t.founded)}年</div>
           <div class="muted">ヘッドコーチ: ${escapeHtml(t.coach)}</div>
