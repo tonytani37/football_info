@@ -33,6 +33,17 @@ let state = {
   page:1
 };
 
+/* チームカラーの定義 */
+const teamColors = {
+  '広島大学': '#000000ff', // 黒
+  '高知大学': '#00724eff', // 緑
+  '愛媛大学': '#a800b1ff', // 紫
+  '山口大学': '#0000ffff', // 青
+  '島根大学': '#ff0000ff', // 赤
+  '山口東京理科大学': '#ff7504ff' // オレンジ
+  // チームと色を追加してください
+};
+
 /* -------------------------
    DOM
    ------------------------- */
@@ -190,6 +201,11 @@ function renderPlayers(players){
       const c = document.createElement('article');
       c.className = 'card';
       c.tabIndex = 0;
+
+      // プレイヤーのチーム名から色を取得。見つからない場合は灰色をデフォルトにする
+      const teamColor = teamColors[p.team] || '#808080';
+       // `--accent`変数を直接要素に設定
+      c.style.setProperty('--accent', teamColor);
       c.innerHTML = `
         <div style="display:flex;gap:12px;align-items:center">
           <div class="team-badge">${escapeHtml(p.number)}</div>
@@ -232,6 +248,9 @@ function renderTeams(teams){
       const c = document.createElement('article');
       c.className = 'card';
       c.tabIndex = 0;
+      const teamColor = teamColors[t.name] || '#808080';
+       // `--accent`変数を直接要素に設定
+      c.style.setProperty('--accent', teamColor);
       c.innerHTML = `
         <div style="display:flex;gap:12px;align-items:center">
           <div class="team-badge">${escapeHtml(t.name.split(' ').map(s=>s[0]).join('').slice(0,2))}</div>

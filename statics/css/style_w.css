@@ -115,7 +115,7 @@ select.input, input[type=number].input{appearance:none}
 .team-badge{
   width:56px; height:56px;
   border-radius:8px;
-  background:linear-gradient(135deg,var(--accent),#7fbfff);
+  background:linear-gradient(135deg,var(--accent) 50%,#dadada);
   display:flex;
   align-items:center;
   justify-content:center;
