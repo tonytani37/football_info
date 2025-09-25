@@ -49,9 +49,9 @@ const teamMarks = {
   '広島大学': 'hiroshima.png', 
   '高知大学': 'kouchi.png', 
   '愛媛大学': 'ehime.png', 
-  '山口大学': 'yamaguchi.png', 
+  '山口大学': 'yamaguchi.jpg', 
   '島根大学': 'shimane.png', 
-  '山口東京理科大学': 'rikadai.png' 
+  '山口東京理科大学': 'rikadai.jpg' 
   // チームと色を追加してください
 };
 
