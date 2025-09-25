@@ -44,14 +44,14 @@ const teamColors = {
   // チームと色を追加してください
 };
 
-/* チームカラーの定義 */
+/* チームマークの定義 */
 const teamMarks = {
   '広島大学': 'hiroshima.png', 
   '高知大学': 'kouchi.png', 
   '愛媛大学': 'ehime.png', 
-  '山口大学': 'yamaguchi.jpg', 
+  '山口大学': 'yamaguchi.png', 
   '島根大学': 'shimane.png', 
-  '山口東京理科大学': 'rikadai.jpg' 
+  '山口東京理科大学': 'rikadai.png' 
   // チームと色を追加してください
 };
 
@@ -216,12 +216,14 @@ function renderPlayers(players){
       // プレイヤーのチーム名から色を取得。見つからない場合は灰色をデフォルトにする
       const teamColor = teamColors[p.team] || '#808080';
        // `--accent`変数を直接要素に設定
-      c.style.setProperty('--accent', teamColor);
+      // c.style.setProperty('--accent', teamColor);
+      const teamMark = teamMarks[p.team] || `statics/img/cscaa_jp.png`;
+      const playerImgSrc = `statics/img/teams/${teamMark}`;
       c.innerHTML = `
         <div style="display:flex;gap:12px;align-items:center">
-          <div class="team-badge">${escapeHtml(p.number)}</div>
+          <img src=${playerImgSrc} style="width:60px; height:60px; object-fit:cover; border-radius:8px;">
           <div>
-            <div style="font-weight:700">${escapeHtml(p.name)}</div>
+            <div style="font-weight:700">#${escapeHtml(p.number)} ${escapeHtml(p.name)}</div>
             <div class="meta">${escapeHtml(p.team)} ${p.position}</div>
             <div class="meta">${p.grade}年</div>
           </div>
@@ -232,6 +234,8 @@ function renderPlayers(players){
       wrapper.appendChild(c);
     });
   }
+  // <div class="team-badge">${escapeHtml(p.number)}</div>
+
   resultsArea.innerHTML = '';
   resultsArea.appendChild(wrapper);
 
@@ -259,12 +263,14 @@ function renderTeams(teams){
       const c = document.createElement('article');
       c.className = 'card';
       c.tabIndex = 0;
-      const teamColor = teamColors[t.name] || '#808080';
+      // const teamColor = teamColors[t.name] || '#808080';
        // `--accent`変数を直接要素に設定
       c.style.setProperty('--accent', teamColor);
+      const teamMark = teamMarks[t.name] || `statics/img/cscaa_jp.png`;
+      const playerImgSrc = `statics/img/teams/${teamMark}`;
       c.innerHTML = `
         <div style="display:flex;gap:12px;align-items:center">
-          <div class="team-badge">${escapeHtml(t.name.split(' ').map(s=>s[0]).join('').slice(0,2))}</div>
+          <img src=${playerImgSrc} style="width:60px; height:60px; object-fit:cover; border-radius:8px;">
           <div>
             <div style="font-weight:700">${escapeHtml(t.name)}</div>
             <div class="meta">${escapeHtml(t.nickname)}</div>
@@ -277,6 +283,7 @@ function renderTeams(teams){
       wrapper.appendChild(c);
     });
   }
+  // <div class="team-badge">${escapeHtml(t.name.split(' ').map(s=>s[0]).join('').slice(0,2))}</div>
 
   resultsArea.innerHTML = '';
   resultsArea.appendChild(wrapper);
