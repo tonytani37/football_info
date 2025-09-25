@@ -56,7 +56,17 @@ h1{font-size:20px; margin:0}
   padding:10px 12px;
   border-radius:10px;
   color:#333;
-  min-width:200px;
+  min-width:350px;
+  font-size:1em;
+}
+
+.input-s{
+  background:#fff;
+  border:1px solid #ccc;
+  padding:10px 12px;
+  border-radius:10px;
+  color:#333;
+  min-width:300px;
   font-size:1em;
 }
 
