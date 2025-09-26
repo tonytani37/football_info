@@ -30,7 +30,8 @@ let state = {
   sortBy:'relevance',
   perPage:12,
   viewGrid:true,
-  page:1
+  page:1,
+  searched:false   // 👈 これを追加
 };
 
 /* チームカラーの定義 */
@@ -88,6 +89,7 @@ tabs.forEach(t=>{
   el.addEventListener('input', (e)=> {
     state[e.target.id === 'q' ? 'q' : (e.target.id || e.target.name)] = e.target.value;
     if (e.target.id === 'perPage') state.perPage = parseInt(e.target.value) || 12;
+    state.searched = true;   // 👈 検索が始まったことを記録
     render();
   });
 });
@@ -100,6 +102,7 @@ resetBtn.addEventListener('click', ()=> {
   state.division='';
   state.numMax=''; 
   state.page = 1;
+  state.searched = false;   // 👈 リセット後も検索後扱い
   render();
 });
 
@@ -142,7 +145,7 @@ function filterAndSort(){
     items = items.filter(it => {
     //   const hay = `${it.name || ''} ${it.team || ''} ${it.name_en || ''} ${it.city || ''} ${it.name}`.toLowerCase();
     // 修正後
-    const hay = `${it.name || ''} ${it.team || ''} ${it.name_en || ''} ${it.city || ''} ${it.name} ${it.division || ''}`.toLowerCase();
+    const hay = `${it.name || ''} ${it.team || ''} ${it.name_en || ''} ${it.name} ${it.division || ''}`.toLowerCase();
       return tokens.every(t => hay.includes(t));
     });
   }
@@ -193,6 +196,23 @@ function updateActiveFilters(){
 function renderPlayers(players){
   const wrapper = document.createElement('div');
   wrapper.className = state.viewGrid ? 'result-grid' : '';
+  
+  // 🔽 初期画面なら何も出さない
+  if (!state.searched) {
+    resultsArea.innerHTML = ``;
+    return;
+  }
+
+  // 🔽 件数チェックを先頭で行う
+  if (!players || players.length === 0) {
+    wrapper.innerHTML = `<p style="padding:1em; text-align:center; color:#666;">
+      対象選手が見つかりません</p>` ;
+    // console.log("データなし")
+    resultsArea.innerHTML = '';
+    resultsArea.appendChild(wrapper);
+    return; // ここで処理を終わらせる
+  }
+
   if (!state.viewGrid){
     // テーブル表示
     const table = document.createElement('table');
@@ -249,6 +269,22 @@ function renderPlayers(players){
 function renderTeams(teams){
   const wrapper = document.createElement('div');
   wrapper.className = state.viewGrid ? 'result-grid' : '';
+    // 🔽 初期画面なら何も出さない
+  if (!state.searched) {
+    resultsArea.innerHTML = ``;
+    return;
+  }
+
+  // 🔽 件数チェックを先頭で行う
+  if (!teams || teams.length === 0) {
+    wrapper.innerHTML = `<p style="padding:1em; text-align:center; color:#666;">
+      対象のチームが見つかりません</p>` ;
+    // console.log("データなし")
+    resultsArea.innerHTML = '';
+    resultsArea.appendChild(wrapper);
+    return; // ここで処理を終わらせる
+  }
+
   if (!state.viewGrid){
     const table = document.createElement('table');
     table.innerHTML = `<thead><tr><th>チーム</th><th>ニックネーム</th><th>所在地</th><th>創設年</th><th></th></tr></thead><tbody></tbody>`;
