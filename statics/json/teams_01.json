@@ -1,0 +1,4 @@
+[
+  { "id":"t2", "name":"山口大学",  "division":"B","city":"山口県山口市", "founded":1980, "nickname":"ギャンブラーズ", "coach":"阿部 亮","color":"ブルー/ホワイト"},
+  { "id":"t3", "name":"九州大学",  "division":"B","city":"福岡県福岡市", "founded":1978, "nickname":"パルーカス", "coach":"脇田 薫平","color":"ネイビー/ゴールド"}
+]

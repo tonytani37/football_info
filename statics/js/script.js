@@ -8,8 +8,11 @@ let samplePlayers = [];
 async function loadData() {
   try {
     const [playersRes, teamsRes] = await Promise.all([
-      fetch("statics/json/players.json"),
-      fetch("statics/json/teams.json")
+      // fetch("statics/json/players.json"),
+      // fetch("statics/json/teams.json")
+      fetch("statics/json/players_01.json"),
+      fetch("statics/json/teams_01.json")
+
     ]);
     samplePlayers = await playersRes.json();
     sampleTeams = await teamsRes.json();
@@ -41,7 +44,8 @@ const teamColors = {
   '愛媛大学': '#a800b1ff', // 紫
   '山口大学': '#002fffff', // 青
   '島根大学': '#ff0000ff', // 赤
-  '山口東京理科大学': '#ff7504ff' // オレンジ
+  '山口東京理科大学': '#ff7504ff', // オレンジ
+  '九州大学':'#000080ff', // ネイビー
   // チームと色を追加してください
 };
 
@@ -52,7 +56,8 @@ const teamMarks = {
   '愛媛大学': 'ehime.png', 
   '山口大学': 'yamaguchi.png', 
   '島根大学': 'shimane.png', 
-  '山口東京理科大学': 'rikadai.png' 
+  '山口東京理科大学': 'rikadai.png',
+  '九州大学': 'kyushu.png'
   // チームと色を追加してください
 };
 
